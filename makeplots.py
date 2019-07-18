@@ -45,6 +45,7 @@ with open("GlobalFit_fitres_unconditionnal_mu0.txt") as f:
         elif iscorr:
             corr_tem = [float(i) for i in each_line.split()]
             if len(corr_tem) > 3:
+                corr_tem.reverse()
                 corrmatrix.append(corr_tem)
         if "NUISANCE_PARAMETERS" in each_line:
             ispull = True
@@ -54,7 +55,7 @@ with open("GlobalFit_fitres_unconditionnal_mu0.txt") as f:
 pull(syspullcentre,syspullerror,sysnames,"pullplot")
 pull(statpullcentre,statpullerror,statnames,"pullstatplot")
 
-corrmatrix.reverse()
+#corrmatrix.reverse()
 toberemove = []
 realsysname = []
 for i in range(len(allnames)):
