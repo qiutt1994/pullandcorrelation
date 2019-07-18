@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 def pull(centre, error, names, filename=None):
     x = range(1, len(centre) + 1)
-    fig = plt.figure(figsize=(0.2*len(centre),5))
+    fig = plt.figure(figsize=(0.2*len(centre),7))
     ax = fig.add_subplot(1, 1, 1)
     ax.set_ylim(-4, 4)
     ax.set_xlim(0, len(centre) + 1)
@@ -25,7 +25,7 @@ def pull(centre, error, names, filename=None):
     plt.tight_layout()
     if filename is not None:
         plt.savefig(filename + '.pdf', bbox_inches='tight', pad_inches = 0, )#
-    #plt.show()
+    plt.show()
 
 if __name__ == "__main__":
     pull([0.1,0.2,-0.3]*10,[1,1.1,1.1]*10,['SysFT_EFF_Eigen_Light_4_AntiKt2PV0TrackJets','bdfasffdhsfsdiuhfidhfdsfsdfsdfdsf','fdisujfdsfoihfisdufhid']*10, "test")
