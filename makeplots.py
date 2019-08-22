@@ -63,7 +63,8 @@ for i in range(len(allnames)):
     #     toberemove.append(i)
     # if "mu" == allnames[i]:
     #     toberemove.append(i)
-    if allnames[i][0:3] != "Sys":
+    #if allnames[i][0:3] != "Sys":
+    if "bin" in allnames[i]:
         toberemove.append(i)
         #print(allnames[i][0:3])
     else:
@@ -79,4 +80,28 @@ for i in range(len(allnames)):
         syscorrmatrix.append(tem_corr)
 
 #print(len(syscorrmatrix), len(syscorrmatrix[0]), len(realsysname))
-correlation(syscorrmatrix, realsysname, "correlation_sys")
+correlation(syscorrmatrix, realsysname, "correlation_sysandnorm")
+
+toberemove = []
+for i in range(len(realsysname)):
+    donotremoveit = 0
+    for each in syscorrmatrix[i]:
+        if abs(each) > 0.05:
+            donotremoveit += 1
+    if donotremoveit < 2:
+        toberemove.append(i)
+
+
+print(toberemove)
+syscorrmatrix_sm = []
+realsysname_sm = []
+for i in range(len(realsysname)):
+    if i in toberemove:
+        continue
+    realsysname_sm.append(realsysname[i])
+    tem = []
+    for j in range(len(syscorrmatrix[i])):
+        if j not in toberemove:
+            tem.append(syscorrmatrix[i][j])
+    syscorrmatrix_sm.append(tem)
+correlation(syscorrmatrix_sm, realsysname_sm, "correlation_sysandnorm_sm")

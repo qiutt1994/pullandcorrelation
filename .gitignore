@@ -1,3 +1,12 @@
+*.pyc
 *.pdf
-__pycache__
-*txt
+*.root
+*.txt
+*.tex
+*.eps
+*.sterr
+*.log
+*.C
+*.log
+*mc16*
+*oldpaper*

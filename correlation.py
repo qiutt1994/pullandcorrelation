@@ -14,7 +14,7 @@ def correlation(matrix, xylabel, filename=None, number=False):
     ax.set_yticklabels(xylabel,fontsize=5)
     ax.set_xticks(np.arange(-0.5, len(xylabel), 1), minor=True)
     ax.set_yticks(np.arange(-0.5, len(xylabel), 1), minor=True)
-    ax.grid(color='w', which='minor')
+    ax.grid( which='minor')
     plt.colorbar(im, ax=ax, shrink=0.9)
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
          rotation_mode="anchor")
