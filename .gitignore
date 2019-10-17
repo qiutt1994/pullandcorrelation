@@ -10,3 +10,7 @@
 *.log
 *mc16*
 *oldpaper*
+*.stdout
+*.submit
+*.cfg
+*.sh

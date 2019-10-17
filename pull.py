@@ -1,5 +1,10 @@
+import matplotlib
+#matplotlib.rcParams['text.usetex'] = True
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import rc, rcParams
+
+
 def pull(centre, error, names, filename=None):
     x = range(1, len(centre) + 1)
     fig = plt.figure(figsize=(0.2*len(centre),7))
@@ -22,6 +27,7 @@ def pull(centre, error, names, filename=None):
     ax.set_xticks(x)
     # Set ticks labels for x-axis
     ax.set_xticklabels(names, rotation=90, fontsize=8)
+    ax.set_ylabel(r"$\mathit{(\theta_{fit}-\theta_{fit})/\Delta\theta}$",fontsize=15)
     plt.tight_layout()
     if filename is not None:
         plt.savefig(filename + '.pdf', bbox_inches='tight', pad_inches = 0, )#
