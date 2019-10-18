@@ -92,7 +92,7 @@ for i in range(len(realsysname)):
         toberemove.append(i)
 
 
-print(toberemove)
+#print(toberemove)
 syscorrmatrix_sm = []
 realsysname_sm = []
 for i in range(len(realsysname)):

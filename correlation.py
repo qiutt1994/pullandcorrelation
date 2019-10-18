@@ -32,7 +32,7 @@ def correlation(matrix, xylabel, filename=None, number=False):
     plt.tight_layout()
     if filename is not None:
         plt.savefig(filename + '.pdf', bbox_inches='tight', pad_inches = 0,)#
-    plt.show()
+    #plt.show()
     plt.close(fig)
 if __name__ == "__main__":
     farmers = ["Agrifun_dhfidhfius_djifosjofijfjij", "Organiculture", "BioGoods Ltd.", "Cornylee Corp."]
