@@ -5,7 +5,7 @@ def correlation(matrix, xylabel, filename=None, number=False):
     if len(matrix) != len(matrix[0]) or len(matrix) != len(xylabel):
         print("correlation error: wrong input list size.")
         exit(1)
-    fig = plt.figure(figsize=(int(len(matrix[0]))*0.2, int(len(matrix[0]))*0.2))
+    fig = plt.figure(figsize=(int(len(matrix[0]))*0.33, int(len(matrix[0]))*0.33))
     ax = fig.add_subplot(1, 1, 1)
     im = ax.imshow(matrix, cmap= 'bwr')
     im.set_clim(-1, 1)
@@ -28,7 +28,7 @@ def correlation(matrix, xylabel, filename=None, number=False):
     if number:
         for i in range(len(matrix[0])):
             for j in range(len(matrix)):
-                ax.text(j, i, matrix[i][j], ha="center", va="center", color="w", fontsize=4)
+                ax.text(j, i, round(matrix[i][j], 2), ha="center", va="center", color="k", fontsize=4)
     plt.tight_layout()
     if filename is not None:
         plt.savefig(filename + '.pdf', bbox_inches='tight', pad_inches = 0,)#

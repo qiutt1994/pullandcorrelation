@@ -34,7 +34,7 @@ def makecorrelation(allnames, corrmatrix, filename):
     for i in range(len(realsysname)):
         donotremoveit = 0
         for each in syscorrmatrix[i]:
-            if abs(each) > 0.2:
+            if abs(each) > 0.3:
                 donotremoveit += 1
         if donotremoveit < 2:
             toberemove.append(i)
@@ -52,7 +52,7 @@ def makecorrelation(allnames, corrmatrix, filename):
             if j not in toberemove:
                 tem.append(syscorrmatrix[i][j])
         syscorrmatrix_sm.append(tem)
-    correlation(syscorrmatrix_sm, realsysname_sm, filename + "sm")
+    correlation(syscorrmatrix_sm, realsysname_sm, filename + "sm", number=True)
 
 sysnames = []
 syspullcentre = []

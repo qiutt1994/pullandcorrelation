@@ -55,6 +55,10 @@ with open("GlobalFit_fitres_unconditionnal_mu0.txt") as f:
 pull(syspullcentre,syspullerror,sysnames,"pullplot")
 pull(statpullcentre,statpullerror,statnames,"pullstatplot")
 
+middlepull = int(len(sysnames)/2)
+pull(syspullcentre[0:middlepull],syspullerror[0:middlepull],sysnames[0:middlepull],"pullplot1")
+pull(syspullcentre[middlepull+1:],syspullerror[middlepull+1:],sysnames[middlepull+1:],"pullplot2")
+
 #corrmatrix.reverse()
 toberemove = []
 realsysname = []
@@ -86,7 +90,7 @@ toberemove = []
 for i in range(len(realsysname)):
     donotremoveit = 0
     for each in syscorrmatrix[i]:
-        if abs(each) > 0.2:
+        if abs(each) > 0.3:
             donotremoveit += 1
     if donotremoveit < 2:
         toberemove.append(i)
@@ -104,4 +108,4 @@ for i in range(len(realsysname)):
         if j not in toberemove:
             tem.append(syscorrmatrix[i][j])
     syscorrmatrix_sm.append(tem)
-correlation(syscorrmatrix_sm, realsysname_sm, "correlation_sysandnorm_sm")
+correlation(syscorrmatrix_sm, realsysname_sm, "correlation_sysandnorm_sm", number=True)

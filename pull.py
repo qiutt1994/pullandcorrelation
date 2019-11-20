@@ -32,7 +32,7 @@ def pull(centre, error, names, filename=None, datac=None, datae=None):
     ax.set_xticks(x)
     # Set ticks labels for x-axis
     ax.set_xticklabels(names, rotation=90, fontsize=8)
-    ax.set_ylabel(r"$\mathit{(\theta_{fit}-\theta_{fit})/\Delta\theta}$",fontsize=15)
+    ax.set_ylabel(r"$\mathit{(\theta_{fit}-\theta_{0})/\Delta\theta}$",fontsize=15)
     plt.tight_layout()
     if filename is not None:
         plt.savefig(filename + '.pdf', bbox_inches='tight', pad_inches = 0, )#
