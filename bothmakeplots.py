@@ -1,6 +1,6 @@
 from pull import *
 from correlation import *
-
+import os
 
 def makecorrelation(allnames, corrmatrix, filename):
     #corrmatrix.reverse()
@@ -54,6 +54,14 @@ def makecorrelation(allnames, corrmatrix, filename):
         syscorrmatrix_sm.append(tem)
     correlation(syscorrmatrix_sm, realsysname_sm, filename + "sm", number=True)
 
+havemu = False
+datafile = "GlobalFit_fitres_unconditionnal_mu0.txt"
+asimovfile = "GlobalFit_fitres_unconditionnal_mu0_as.txt"
+if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
+    datafile = "GlobalFit_fitres_conditionnal_mu0.txt"
+    asimovfile = "GlobalFit_fitres_conditionnal_mu0_as.txt"
+    havemu = True
+
 sysnames = []
 syspullcentre = []
 syspullerror = []
@@ -62,10 +70,9 @@ statpullcentre = []
 statpullerror = []
 allnames = []
 corrmatrix = []
-with open("GlobalFit_fitres_unconditionnal_mu0.txt") as f:
+with open(datafile) as f:
     ispull = False
     iscorr = False
-    havemu = False
     for each_line in f:
         if ispull:
             if "&" in each_line:
@@ -114,10 +121,12 @@ statpullcentre_as = []
 statpullerror_as = []
 allnames_as = []
 corrmatrix_as = []
-with open("GlobalFit_fitres_unconditionnal_mu0_as.txt") as f:
+havemu = False
+if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
+    havemu = True
+with open(asimovfile) as f:
     ispull = False
     iscorr = False
-    havemu = False
     for each_line in f:
         if ispull:
             if "&" in each_line:

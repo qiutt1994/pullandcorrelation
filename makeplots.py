@@ -1,5 +1,6 @@
 from pull import *
 from correlation import *
+import os
 
 sysnames = []
 syspullcentre = []
@@ -9,10 +10,16 @@ statpullcentre = []
 statpullerror = []
 allnames = []
 corrmatrix = []
-with open("GlobalFit_fitres_unconditionnal_mu0.txt") as f:
+
+havemu = False
+asimovfile = "GlobalFit_fitres_unconditionnal_mu0.txt"
+if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
+    asimovfile = "GlobalFit_fitres_conditionnal_mu0.txt"
+    havemu = True
+
+with open(asimovfile) as f:
     ispull = False
     iscorr = False
-    havemu = False
     for each_line in f:
         if ispull:
             if "&" in each_line:
