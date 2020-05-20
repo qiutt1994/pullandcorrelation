@@ -13,9 +13,15 @@ corrmatrix = []
 
 havemu = False
 asimovfile = "GlobalFit_fitres_unconditionnal_mu0.txt"
+if "GlobalFit_fitres_unconditionnal_mu1.txt" in os.listdir():
+    asimovfile = "GlobalFit_fitres_unconditionnal_mu1.txt"
 if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
     asimovfile = "GlobalFit_fitres_conditionnal_mu0.txt"
     havemu = True
+if "GlobalFit_fitres_conditionnal_mu1.txt" in os.listdir():
+    asimovfile = "GlobalFit_fitres_conditionnal_mu1.txt"
+    havemu = True
+
 
 with open(asimovfile) as f:
     ispull = False
@@ -59,6 +65,16 @@ with open(asimovfile) as f:
         if "CORRELATION_MATRIX" in each_line:
             iscorr = True
 
+
+findlumi = False
+for i in range(len(sysnames)):
+    if sysnames[i][0:3] == "Sys":
+        sysnames[i] = sysnames[i][3:]
+        continue
+    if not findlumi and sysnames[i] == "Luminositynosity":
+        sysnames[i] = "Luminosity"
+        findlumi = True
+
 pull(syspullcentre,syspullerror,sysnames,"pullplot")
 pull(statpullcentre,statpullerror,statnames,"pullstatplot")
 
@@ -89,6 +105,17 @@ for i in range(len(allnames)):
             if j not in toberemove:
                 tem_corr.append(corrmatrix[i][j])
         syscorrmatrix.append(tem_corr)
+
+
+
+findlumi = False
+for i in range(len(realsysname)):
+    if realsysname[i][0:3] == "Sys":
+        realsysname[i] = realsysname[i][3:]
+        continue
+    if not findlumi and realsysname[i] == "Luminositynosity":
+        realsysname[i] = "Luminosity"
+        findlumi = True
 
 #print(len(syscorrmatrix), len(syscorrmatrix[0]), len(realsysname))
 correlation(syscorrmatrix, realsysname, "correlation_sysandnorm")

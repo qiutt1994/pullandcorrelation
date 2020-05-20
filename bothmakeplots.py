@@ -56,10 +56,14 @@ def makecorrelation(allnames, corrmatrix, filename):
 
 havemu = False
 datafile = "GlobalFit_fitres_unconditionnal_mu0.txt"
+if "GlobalFit_fitres_unconditionnal_mu1.txt" in os.listdir():
+    datafile = "GlobalFit_fitres_unconditionnal_mu1.txt"
+# if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
+#     datafile = "GlobalFit_fitres_conditionnal_mu0.txt"
 asimovfile = "GlobalFit_fitres_unconditionnal_mu0_as.txt"
 if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
     datafile = "GlobalFit_fitres_conditionnal_mu0.txt"
-    asimovfile = "GlobalFit_fitres_conditionnal_mu0_as.txt"
+    asimovfile = "GlobalFit_fitres_conditionnal_mu1_as.txt"
     havemu = True
 
 sysnames = []
@@ -122,6 +126,8 @@ statpullerror_as = []
 allnames_as = []
 corrmatrix_as = []
 havemu = False
+if "GlobalFit_fitres_conditionnal_mu1.txt" in os.listdir():
+    havemu = True
 if "GlobalFit_fitres_conditionnal_mu0.txt" in os.listdir():
     havemu = True
 with open(asimovfile) as f:
@@ -170,6 +176,34 @@ for each, eachas in zip(sysnames, sysnames_as):
     if each != eachas:
         print("Error: sysname order does not match!")
         exit(1)
+
+findlumi = False
+for i in range(len(sysnames)):
+    if sysnames[i][0:3] == "Sys":
+        sysnames[i] = sysnames[i][3:]
+        continue
+    if not findlumi and sysnames[i] == "Luminositynosity":
+        sysnames[i] = "Luminosity"
+        findlumi = True
+
+findlumi = False
+for i in range(len(allnames)):
+    if allnames[i][0:3] == "Sys":
+        allnames[i] = allnames[i][3:]
+        continue
+    if not findlumi and allnames[i] == "Luminositynosity":
+        allnames[i] = "Luminosity"
+        findlumi = True
+
+findlumi = False
+for i in range(len(allnames_as)):
+    if allnames_as[i][0:3] == "Sys":
+        allnames_as[i] = allnames_as[i][3:]
+        continue
+    if not findlumi and allnames_as[i] == "Luminositynosity":
+        allnames_as[i] = "Luminosity"
+        findlumi = True
+
 
 middlepull = int(len(sysnames)/2)
 pull(syspullcentre,syspullerror,sysnames,"pullplot", datac=syspullcentre_as, datae=syspullerror_as)
