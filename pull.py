@@ -7,9 +7,9 @@ from matplotlib import rc, rcParams
 
 def pull(centre, error, names, filename=None, datac=None, datae=None):
     x = range(1, len(centre) + 1)
-    fig = plt.figure(figsize=(0.2*len(centre),7))
+    fig = plt.figure(figsize=(0.2*len(centre),4))
     ax = fig.add_subplot(1, 1, 1)
-    ax.set_ylim(-3, 3.6)
+    ax.set_ylim(-3, 5)
     ax.set_xlim(0, len(centre) + 1)
     #ax.set_aspect(aspect=1/len(centre)*45)
     xband = [0,len(centre) + 2]
