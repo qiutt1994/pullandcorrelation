@@ -34,7 +34,7 @@ def makecorrelation(allnames, corrmatrix, filename):
     for i in range(len(realsysname)):
         donotremoveit = 0
         for each in syscorrmatrix[i]:
-            if abs(each) > 0.3:
+            if abs(each) > 0.2:
                 donotremoveit += 1
         if donotremoveit < 2:
             toberemove.append(i)
